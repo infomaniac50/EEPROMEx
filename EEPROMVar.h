@@ -1,4 +1,3 @@
-#include <WProgram.h>
 #include <EEPROMex.h>
 
 /*
@@ -26,7 +25,7 @@ template<typename T> class EEPROMVar
 {
 	public:
 	  EEPROMVar(T init) {
-		address = EEPROM.getAdress(sizeof(T));	
+		address = EEPROM.getAddress(sizeof(T));	
 		var = init;
 	  }
 	  operator T () { 
@@ -34,6 +33,7 @@ template<typename T> class EEPROMVar
 	  }
 	  EEPROMVar &operator=(T val) {
 		var = val;
+		return *this;
 	  }
 	  
 	  void operator+=(T val) {
@@ -70,7 +70,7 @@ template<typename T> class EEPROMVar
 	    EEPROM.updateBlock<T>(address, var);
 	  }
 	  
-	  int getAdress(){	   	   
+	  int getAddress(){	   	   
 	    return address;
 	  }
 	  
